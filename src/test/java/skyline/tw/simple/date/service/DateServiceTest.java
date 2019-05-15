@@ -15,14 +15,16 @@ import static org.junit.Assert.*;
          System.out.println("setup test data before class");
      }
 
-     @Before 
+     // unit test
+     @Before
      public void setUp() {
          System.out.println("setup test data");
          dateService = new DateService();
+//         dateService.isLeapYear()
      }
 
      @Test 
-     public void testGetWeekDay() {
+     public void testGetWeekDay_case1() {
          System.out.println("testGetWeekDay");
          // TODO: test me
          // dateService.getWeekDay()

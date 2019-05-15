@@ -17,8 +17,13 @@ public class UserInfoRetrieveService {
      * @param user
      * @return
      */
+    private DateService dateService;
+
+
+    // String, int, double, Map List Set
     public Map<Integer, String> getWeekDayOfBirthday(User user){
-        
+
+
         return null;
     }
 
