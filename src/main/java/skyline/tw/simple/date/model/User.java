@@ -5,8 +5,9 @@ import java.util.Date;
 // domain model
 public class User {
 
+
     private int age;
-    private Date birthday;
+    public Date birthday;
     private String firstName;
     private String lastName;
     private String nickName;
