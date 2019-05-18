@@ -32,12 +32,12 @@ public class UserInfoRetrieveService {
     // String, int, double, Map List Set
     public Map<Integer, String> getWeekDayOfBirthday(User user){
         Map<Integer, String> ans = new HashMap<>();
-        Date oneYearBirthday = User.getBirthday();
+        Date oneYearBirthday = user.getBirthday();
         LocalDate localDate = oneYearBirthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int startYear  = localDate.getYear();
         int month = localDate.getMonthValue();
         int day   = localDate.getDayOfMonth();
-        int hisAge   = User.getAge();
+        int hisAge   = user.getAge();
         int yearNow = Calendar.getInstance().get(Calendar.YEAR);
 
 
