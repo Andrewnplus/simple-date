@@ -1,6 +1,5 @@
 package skyline.tw.simple.date.service;
 
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
@@ -16,7 +15,7 @@ import java.util.List;
 public class DateService {
 
     // scope: private, public, protected, package private
-    public String getWeekDay(Date date) {
+    public static String getWeekDay(Date date) {
         // implement me
         SimpleDateFormat format = new SimpleDateFormat("EEEE");
         return format.format(date);
@@ -32,33 +31,20 @@ public class DateService {
 
     private static Calendar cacheCalendar;
 
-    public List<Date> get13thFridaysOfYear(int year) {
+    public List<String> get13thFridaysOfYear(int year) {
         // implement me
+        String targetDate = "/13";
         String thisYear = Integer.toString(year);
-        String start = "01/01/" + thisYear;
-        String end = "01/06/" + thisYear;
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
-        DateTime startDate =formatter.parseDateTime(start);
-        DateTime endDate = formatter.parseDateTime(end);
-        List<Date> fridays = new ArrayList<>();
-        boolean reachedAFriday = false;
-        int fulfillMoment = 0;
-        while (startDate.isBefore(endDate) && fulfillMoment <= 11){
-            if ( startDate.getDayOfWeek() == DateTimeConstants.FRIDAY ){
-                fridays.add(startDate.toDate());
-                reachedAFriday = true;
-                fulfillMoment += 1;
-            }
-            if ( reachedAFriday ){
-                startDate = startDate.plusWeeks(1);
-            } else {
-                startDate = startDate.plusDays(1);
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy/MM/dd");
+        List<String> fridays = new ArrayList<>();
+        for (int i =1; i<=12; i++){
+            String stringDate  = Integer.toString(year) + "/" + Integer.toString(i) + targetDate;
+            DateTime date =formatter.parseDateTime(stringDate);
+            if (date.getDayOfWeek() == DateTimeConstants.FRIDAY){
+                fridays.add(stringDate);
             }
         }
         return fridays;
     }
 
-
-    // overloading ? override?
-    
 }
