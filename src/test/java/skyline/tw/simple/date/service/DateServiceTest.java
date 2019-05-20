@@ -62,7 +62,7 @@ import static org.junit.Assert.*;
          //此部分做過測試，2019的資料OK，但我不太會把以下資料直接存成List<Date>...QQ
          //[Fri Jan 04 00:00:00 CST 2019, Fri Jan 11 00:00:00 CST 2019, Fri Jan 18 00:00:00 CST 2019, Fri Jan 25 00:00:00 CST 2019, Fri Feb 01 00:00:00 CST 2019, Fri Feb 08 00:00:00 CST 2019, Fri Feb 15 00:00:00 CST 2019, Fri Feb 22 00:00:00 CST 2019, Fri Mar 01 00:00:00 CST 2019, Fri Mar 08 00:00:00 CST 2019, Fri Mar 15 00:00:00 CST 2019, Fri Mar 22 00:00:00 CST 2019]
          // 2. Act
-         List<Date> actual = dateService.get13thFridaysOfYear(test);
+         List<String> actual = dateService.get13thFridaysOfYear(test);
          assertEquals(actual, actual);
      }
 }
