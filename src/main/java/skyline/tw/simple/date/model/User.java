@@ -53,4 +53,8 @@ public class User {
     public String getNickName() {
         return nickName;
     }
+    
+    public String getName(){
+        return firstName + " " + lastName;
+    }
 }

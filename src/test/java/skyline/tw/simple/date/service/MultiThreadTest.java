@@ -18,8 +18,8 @@ public class MultiThreadTest {
         UserInfoRetrieveService userInfoRetrieveService = new UserInfoRetrieveService(dateService);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         User john = new User(dateFormat.parse("1996/01/01"), "John", "Mayer", "GuitarGod");
-        User mary = new User(dateFormat.parse("1994/07/01"), "Mary", "Mayer", "GuitarGod");
-        User mark = new User(dateFormat.parse("2000/12/01"), "Mark", "Mayer", "GuitarGod");
+        User mary = new User(dateFormat.parse("1994/07/01"), "Mary", "Wang", "GuitarGod");
+        User mark = new User(dateFormat.parse("2000/12/01"), "Mark", "Jackson", "GuitarGod");
 
         Thread t1 = new Thread(new MyRunnable(userInfoRetrieveService, john));
         Thread t2 = new Thread(new MyRunnable(userInfoRetrieveService, mark));
@@ -48,8 +48,16 @@ public class MultiThreadTest {
 
         @Override
         public void run() {
-            log.info(user);
-            log.info(userInfoRetrieveService.getWeekDayOfBirthday(user));
+            // log.info(user);
+            // log.info(userInfoRetrieveService.getWeekDayOfBirthday(user));
+            // NOTE: race condition happened
+            userInfoRetrieveService.updateUserSignature(user);
+            String userSignature = userInfoRetrieveService.getUserSignature();
+            if (userSignature.equals(user.getName())) {
+                log.info(userInfoRetrieveService.getUserSignature() + " signed!!!");
+            } else {
+                log.error("user " + user.getName() + " should sign but signature is " + userSignature);
+            }
         }
     }
 }

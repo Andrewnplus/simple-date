@@ -3,14 +3,13 @@ package skyline.tw.simple.date.service;
 import org.joda.time.DateTime;
 import skyline.tw.simple.date.model.User;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
 public class UserInfoRetrieveService {
 
+    private String userSignature;
     /**
      * display week day of user's birthday for each age
      * 
@@ -60,6 +59,14 @@ public class UserInfoRetrieveService {
             results.put(i, dateService.getWeekDay(new DateTime(oneYearBirthday).withYear(year).toDate()));
         }
         return results;
+    }
+
+    public void updateUserSignature(User user) {
+        userSignature = user.getName();
+    }
+
+    public String getUserSignature() {
+        return this.userSignature;
     }
 
 }
